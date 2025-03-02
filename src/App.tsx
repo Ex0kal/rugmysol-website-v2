@@ -9,20 +9,12 @@ import Footer from './components/Footer';
 
 const projectId = process.env.REACT_APP_WALLETCONNECT_PROJECT_ID || '';
 
-const metadata = {
-  name: 'RUGmySOL',
-  description: 'The Most Advanced Memecoin on Solana',
-  url: 'https://rugmysol.com',
-  icons: ['https://rugmysol.com/logo.png']
-}
-
 const config = createConfig({
   chains: [mainnet],
   transports: {
     [mainnet.id]: http()
   },
-  ssr: true,
-  metadata
+  ssr: true
 });
 
 createWeb3Modal({
@@ -31,6 +23,12 @@ createWeb3Modal({
   themeMode: 'dark',
   themeVariables: {
     '--w3m-accent': '#9C4FFF',
+  },
+  metadata: {
+    name: 'RUGmySOL',
+    description: 'The Most Advanced Memecoin on Solana',
+    url: 'https://rugmysol.com',
+    icons: ['https://rugmysol.com/logo.png']
   }
 });
 
