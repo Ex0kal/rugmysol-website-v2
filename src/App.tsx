@@ -1,8 +1,8 @@
 import React from 'react';
-import { createWeb3Modal, defaultConfig } from '@web3modal/wagmi/react'
-import { WagmiProvider } from 'wagmi'
-import { mainnet } from 'wagmi/chains'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createWeb3Modal } from '@web3modal/wagmi/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider, createConfig, http } from 'wagmi';
+import { mainnet } from 'wagmi/chains';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
@@ -16,24 +16,25 @@ const metadata = {
   icons: ['https://rugmysol.com/logo.png']
 }
 
-const chains = [mainnet]
-const config = defaultConfig({
-  projectId,
-  chains,
-  metadata,
-})
+const config = createConfig({
+  chains: [mainnet],
+  transports: {
+    [mainnet.id]: http()
+  },
+  ssr: true,
+  metadata
+});
 
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  chains,
   themeMode: 'dark',
   themeVariables: {
     '--w3m-accent': '#9C4FFF',
   }
-})
+});
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
   return (
