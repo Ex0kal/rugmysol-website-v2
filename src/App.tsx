@@ -1,6 +1,5 @@
 import React from 'react';
-import { createWeb3Modal } from '@web3modal/wagmi/react'
-import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
+import { createWeb3Modal, defaultConfig } from '@web3modal/wagmi/react'
 import { WagmiProvider } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -18,7 +17,7 @@ const metadata = {
 }
 
 const chains = [mainnet]
-const config = defaultWagmiConfig({
+const config = defaultConfig({
   projectId,
   chains,
   metadata,
